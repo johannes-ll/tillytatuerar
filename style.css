@@ -46,18 +46,24 @@ main {
     background-image: url('bg.png');
     background-size: 100% 100%;
     overflow-y: scroll;
+    display: flex;
+    flex-direction: row;
 }
 
 main div {
-    width: 600px;
-    margin: auto;
+    position: relative;
+}
+
+main #portfolio {
+    width: 50%;
+    overflow: none;
 }
 
 main div img {
     width: 100%;
     aspect-ratio: 2/1;
     border: 2px black dashed;
-    
+    white-space: nowrap;
 }
 
 #maintext::after {
@@ -66,21 +72,20 @@ main div img {
     animation: blink 1s infinite;
 }
 
-main #recensioner  {
-    position: absolute;
-    right: 10vw;
-    top: 15vh;
-    width: auto;
+main div {
+    width: 25%;
 }
 
-main #links {
-    position: absolute;
-    left: 10vw;
-    bottom: 7.5vh;
-    width: auto;
+main div div {
+    position: fixed;
+    padding: 4rem;
 }
 
-main div[id] * {
+main #links div {
+    bottom: 0;
+}
+
+main div * {
     margin: 0;
 }
 
@@ -91,5 +96,30 @@ main #links ul {
 @keyframes blink {
     to {
         opacity: 1;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        overflow: hidden;
+    }
+    main{
+        flex-direction: column;
+        scrollbar-width: 0;
+    } 
+    main div,
+    main #portfolio,
+    main div div {
+        width: calc(100% - 2rem);
+        padding: 1rem;
+        position: relative;
+    }
+    main #recensioner div {
+        float: right;
+        width: fit-content;
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        align-items: center;
     }
 }
